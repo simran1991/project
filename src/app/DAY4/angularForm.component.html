@@ -1,0 +1,38 @@
+<h1>
+    Template driven forms
+    
+</h1>
+
+<div class="container">
+   
+    <form #userForm="ngForm" (ngSubmit)="save(userForm.value,userForm.valid);" novalidate>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" name="name" minlength="5" [(ngModel)]="user.name" #name="ngModel" required/>
+            <div class="alert alert-danger" [hidden]="name.value || name.pristine && !userForm.submitted">Name is required</div >
+        </div>
+
+        <div  class="formGroup" ngModelGroup="address">
+            <div class="formGroup">
+                <label for="street">Street</label>
+                <input type="text" name="street" minlength="5" [(ngModel)]="user.address.street" #street="ngModel" required/>
+                <div class="alert alert-danger" [hidden]="street.value || street.pristine && !userForm.submitted">Street is required</div >
+            </div>
+            <div class="formGroup">
+                <label for="postcode">Postcode</label>
+                <input type="text" name="postocode" minlength="5" [(ngModel)]="user.address.postcode" #postocode="ngModel" required/>
+                <div class="alert alert-danger" [hidden]="postocode.value || postocode.pristine && !userForm.submitted">Postocode is required</div >
+            </div>
+            <div class="formGroup">
+                <label for="country">Country</label>
+                <select name="country" #country="ngModel" [(ngModel)]="user.address.country" required>
+            <option value="" >select country</option>
+            <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+           </select>
+                <div class="alert alert-danger" [hidden]="country.value || country.pristine && !userForm.submitted">country is required</div >
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+</div>

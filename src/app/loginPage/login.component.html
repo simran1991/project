@@ -1,0 +1,21 @@
+<h2>Login Form</h2>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value,loginForm.valid)" novalidate>
+  <div class="form-group">
+    <label class="center-block">User Name:
+      <input class="form-control" formControlName="userName">
+      <div class="alert alert-danger" [hidden]="(loginForm.controls.userName.valid || loginForm.controls.userName.pristine) && !submitted">Name is required</div >
+    </label>
+  </div>
+
+  <div class="form-group">
+    <label class="center-block">Password:
+      <input class="form-control" formControlName="password">
+      <div class="alert alert-danger" [hidden]="(loginForm.controls.password.valid || loginForm.controls.password.pristine) && !submitted">Name is required</div >
+    </label>
+  </div>
+
+  <button type="submit">Submit</button>
+  <button type="reset">Reset</button>
+</form>
+<p>Form value: {{ loginForm.get('userName').value | json }}</p>
+<p>Form status: {{ loginForm.status | json }}</p>

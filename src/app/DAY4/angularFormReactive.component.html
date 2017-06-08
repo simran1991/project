@@ -1,0 +1,43 @@
+
+
+<div class="container">
+   <div>
+    <h1>we searched for : {{emittedValueFromSearch}}</h1>
+</div>
+<h1>
+    Reactive forms
+    
+</h1>
+    <form [formGroup]="userForm" (ngSubmit)="save(userForm.value,userForm.valid);" novalidate>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text"  formControlName="name" />
+            <div class="alert alert-danger" [hidden]="(userForm.controls.name.valid || userForm.controls.name.pristine) && !submitted">Name is required</div >
+        </div>
+
+        <div  class="formGroup" formGroupName="address" >
+            <div class="formGroup">
+                <label for="street">Street</label>
+                <input type="text"  formControlName="street"/>
+                <div class="alert alert-danger" [hidden]="(userForm.controls.address.controls.street.valid || userForm.controls.address.controls.street.pristine) && !submitted">Street is required</div >
+            </div>
+            <div class="formGroup">
+                <label for="postcode">Postcode</label>
+                <input type="text" formControlName="postcode"/>
+                <div class="alert alert-danger" [hidden]="(userForm.controls.address.controls.postcode.valid || userForm.controls.address.controls.postcode.pristine) && !submitted">Postocode is required</div >
+            </div>
+            <div class="formGroup">
+                <label for="country">Country</label>
+                <select  formControlName="country">
+                        <option value="" >select country</option>
+                        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+                </select>
+                <div class="alert alert-danger" [hidden]="(userForm.controls.address.controls.country.valid || userForm.controls.address.controls.country.pristine) && !submitted">country is required</div >
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+    </form>
+    <p>Form value: {{ userForm.get('name').value | json }}</p>
+
+</div>

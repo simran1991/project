@@ -1,0 +1,30 @@
+<div class="container">
+  <h1 allHighlight (mouseenter)="display=true" (mouseleave)="display=false">Search Component</h1>
+  <h2 *ngIf="display; else elsePart">hello IF part</h2>
+  <ng-template #elsePart>
+    <h2>this is else part</h2>
+  </ng-template>
+
+  <input [(ngModel)]="searchText"/>
+  <button (click)="searchData()" >Search</button>
+  <p>{{searchText}}</p>
+
+  using NgStyle
+<div [ngStyle]="{'color': color, 'font-size': size+'px', 'font-weight': 'bold'}">
+  Now Styling in runtime
+</div>
+  <!--color is directly bound to color in ng style-->
+  <input [(ngModel)]="color" />
+  <button (click)="size=size+1">+</button>
+  <button (click)="size=size-1">-</button>
+
+  <div>
+    <!--<span [ngCLass]="('apply':changeClass)"> Dynamic class</span>
+    <button (click)="changeClass=!changeClass"> changle class</button>-->
+
+  </div>
+</div>  
+
+
+
+
